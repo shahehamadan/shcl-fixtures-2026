@@ -1,52 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>SHCL Fixtures Portal 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;900&display=swap" rel="stylesheet">
-<style>
-body {
-    margin:0;
-    font-family:'Montserrat', sans-serif;
-    background:#f4f6fb;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100vh;
-}
-.portal {
-    text-align:center;
-}
-h1 {
-    color:#2F1660;
-    font-weight:900;
-    margin-bottom:40px;
-}
-.btn {
-    display:block;
-    width:260px;
-    margin:15px auto;
-    padding:14px 0;
-    border-radius:999px;
-    font-weight:800;
-    text-decoration:none;
-    color:white;
-}
-.spring { background:#1595FF; }
-.summer { background:#C61AFF; }
-.handbook { background:#F1C841; color:#2F1660; }
-</style>
-</head>
-<body>
-<div class="portal">
-    <h1>SHCL Season 2026<br>Fixtures Portal</h1>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SHCL Fixtures 2026</title>
 
-    <a class="btn spring" href="spring.html">Spring Fixtures</a>
-    <a class="btn summer" href="summer.html">Summer Fixtures</a>
-    <a class="btn handbook" href="https://drive.google.com/file/d/1O2FendCik0rydBQWbR6QLxIYfQgXTLHR/view" target="_blank">
-        SHCL Handbook
-    </a>
-</div>
+  <!-- Montserrat -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    :root{
+      --primary:#2F1660;
+      --blue:#1595FF;
+      --gold:#F1C841;
+      --purple:#C61AFF;
+      --bg:#f4f6fb;
+      --text:#121212;
+    }
+    *{ box-sizing:border-box; margin:0; padding:0; }
+    body{
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* Top bar */
+    .topbar{
+      background: var(--primary);
+      color:#fff;
+      height:74px;
+      display:flex;
+      align-items:center;
+      padding:0 22px;
+      gap:14px;
+    }
+    .topbar .logo{
+      width:38px; height:38px;
+      border-radius:50%;
+      background:#fff;
+      padding:3px;
+      object-fit:contain;
+    }
+    .topbar .title{
+      font-size:26px;
+      font-weight:500;
+      letter-spacing:0.3px;
+    }
+
+    /* Hero */
+    .hero{
+      height:390px;
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.20) 0%, rgba(0,0,0,0.20) 100%),
+        url("hero.jpg"); /* <-- replace with your hero image filename */
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding: 20px;
+      text-align:center;
+    }
+    .hero h1{
+      color:#fff;
+      font-size:72px;
+      line-height:1.05;
+      font-weight:900;
+      text-shadow:0 8px 22px rgba(0,0,0,0.35);
+      max-width: 1100px;
+    }
+
+    /* Buttons row */
+    .actions-wrap{
+      background:#fff;
+      padding:34px 18px 28px;
+      display:flex;
+      justify-content:center;
+    }
+    .actions{
+      width:min(1100px, 100%);
+      display:flex;
+      gap:44px;
+      justify-content:center;
+      flex-wrap:wrap;
+    }
+    .btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      width:min(520px, 100%);
+      height:52px;
+      border-radius:6px;
+      background: var(--primary);
+      color:#fff;
+      text-decoration:none;
+      font-weight:600;
+      font-size:18px;
+      box-shadow:0 10px 18px rgba(47,22,96,0.18);
+      transition: transform .12s ease, opacity .12s ease;
+      padding: 0 18px;
+      text-align:center;
+      white-space:nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); opacity:0.96; }
+    .btn:active{ transform: translateY(0px); opacity:0.92; }
+
+    /* Footer */
+    .footer{
+      background:#fff;
+      padding:40px 18px 44px;
+      text-align:center;
+    }
+    .footer .name{
+      font-weight:900;
+      letter-spacing:0.6px;
+      font-size:18px;
+    }
+    .footer .tagline{
+      margin-top:6px;
+      font-weight:600;
+      font-size:14px;
+      opacity:0.9;
+    }
+    .social{
+      margin-top:22px;
+      display:flex;
+      justify-content:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+    .icon{
+      width:44px; height:44px;
+      border-radius:999px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color:#fff;
+      text-decoration:none;
+      box-shadow:0 10px 18px rgba(0,0,0,0.08);
+      font-size:20px;
+    }
+    .ig{ background:#E1306C; }
+    .yt{ background:#FF0000; }
+    .x { background:#111; }
+    .tt{ background:#000; }
+    .fb{ background:#1877F2; }
+    .link{ background:#6b7280; }
+
+    /* Mobile tweaks */
+    @media (max-width: 720px){
+      .topbar .title{ font-size:20px; }
+      .hero{ height:300px; }
+      .hero h1{ font-size:44px; }
+      .actions{ gap:16px; }
+      .btn{ font-size:16px; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Topbar -->
+  <div class="topbar">
+    <!-- Replace logo.png with your actual logo file name in the repo -->
+    <img class="logo" src="logo.png" alt="SHCL Logo">
+    <div class="title">SHCL Fixtures 2026</div>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <h1>SHCL Season 2026 Fixtures</h1>
+  </section>
+
+  <!-- Buttons -->
+  <section class="actions-wrap">
+    <div class="actions">
+      <a class="btn" href="spring.html">Spring Tournament Fixtures</a>
+      <a class="btn" href="summer.html">Summer Tournament Fixtures</a>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="name">SHAH-E-HAMADAN Cricket League England</div>
+    <div class="tagline">Committed to Unity · Excellence · Tradition</div>
+
+    <div class="social">
+      <a class="icon ig" href="https://www.instagram.com/shahe_hamadan" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+      <a class="icon yt" href="https://www.youtube.com/channel/UCoIdWhrnBcGd7TZeyg0eGiQ" target="_blank" aria-label="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      <a class="icon x"  href="https://x.com/shahe_hamadan" target="_blank" aria-label="X"><i class="fa-brands fa-x-twitter"></i></a>
+      <a class="icon tt" href="https://www.tiktok.com/@shahhamadancricketleague" target="_blank" aria-label="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+      <a class="icon fb" href="https://www.facebook.com/people/Shah-e-Hamadan-Cricket-League-England/61558713082083/" target="_blank" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+      <a class="icon link" href="https://shahehamadanlge.play-cricket.com/home" target="_blank" aria-label="Play-Cricket"><i class="fa-solid fa-link"></i></a>
+    </div>
+  </footer>
+
 </body>
 </html>
