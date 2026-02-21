@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SHCL 2026 – group & knockout · Midlands & North</title>
+    <!-- Brand fonts: Montserrat (primary) + fallback -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free) for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            background: #f0f4f8;
+            font-family: 'Montserrat', 'Segoe UI', Roboto, sans-serif;  /* brand: Montserrat */
+            margin: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .fixtures-container {
+            max-width: 1400px;
+            width: 100%;
+        }
+        
+        /* Spring Badge Styling */
+        .spring-badge {
+            background: #C61AFF;  /* Secondary purple */
+            color: white;
+            padding: 6px 20px;
+            border-radius: 40px;
+            font-weight: 700;
+            font-size: 0.95rem;
+            display: inline-block;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 10px rgba(198, 26, 255, 0.3);
+            letter-spacing: 0.5px;
+        }
+        .spring-badge i {
+            color: #F1C841;  /* Yellow icon */
+            margin-right: 8px;
+        }
+        
+        h2 {
+            color: #2F1660;                    /* PRIMARY COLOR */
+            border-left: 6px solid #F1C841;     /* SECONDARY YELLOW */
+            padding-left: 16px;
+            margin: 40px 0 25px 0;
+            font-weight: 600;
+            font-size: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        h2 i {
+            color: #F1C841;                     /* secondary yellow for icons */
+            font-size: 1.8rem;
+        }
+        /* tables */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            background: white;
+            box-shadow: 0 8px 22px rgba(47,22,96,0.12);  /* primary tone shadow */
+            border-radius: 24px;
+            overflow: hidden;
+            margin-bottom: 30px;
+            font-size: 0.95rem;
+        }
+        th {
+            background: #2F1660;                /* PRIMARY COLOR */
+            color: white;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-size: 0.85rem;
+            padding: 16px 8px;
+            text-align: center;
+            border-right: 1px solid #593c8a;    /* lighter purple */
+        }
+        th:last-child {
+            border-right: none;
+        }
+        td {
+            padding: 14px 8px;
+            border-bottom: 1px solid #e2e8f0;
+            text-align: center;
+            vertical-align: middle;
+            background-color: #ffffff;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .region-badge {
+            background: #eef2f6;
+            font-weight: 600;
+            color: #2F1660;                     /* PRIMARY COLOR */
+            border-radius: 30px;
+            padding: 4px 14px;
+            display: inline-block;
+            font-size: 0.8rem;
+        }
+        .ground-name {
+            font-weight: 500;
+            color: #2F1660;                      /* primary */
+        }
+        .match-detail {
+            font-weight: 500;
+            color: #1e3a5f;                       /* deep neutral, keep readable */
+        }
+        .bye-team {
+            background: #f8f0e3;
+            font-weight: 600;
+            color: #C61AFF;                       /* SECONDARY PURPLE */
+            border-radius: 20px;
+            padding: 3px 14px;
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+        .neutral-venue {
+            font-style: italic;
+            color: #1595FF;                       /* SECONDARY BLUE */
+        }
+        .footer-note {
+            background: #e9edf2;
+            padding: 18px 24px;
+            border-radius: 30px;
+            margin: 30px 0 20px;
+            color: #2F1660;                        /* primary */
+            border: 1px solid #cddae8;
+        }
+        .note-symbol {
+            color: #C61AFF;                        /* secondary purple */
+            font-weight: 700;
+        }
+
+        /* ---------- KNOCKOUT DIAGRAM ---------- */
+        .diagram-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin: 30px 0 30px;
+        }
+        .tournament-bracket {
+            flex: 1 1 400px;
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 14px 32px rgba(47,22,96,0.15);
+            padding: 28px 22px;
+            border: 1px solid rgba(98, 48, 148, 0.2);
+        }
+        .bracket-title {
+            border-bottom: 2px solid #F1C841;       /* secondary yellow */
+            padding-bottom: 18px;
+            margin-bottom: 28px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+        }
+        .bracket-title h3 {
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: #2F1660;                          /* primary */
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .bracket-title h3 i {
+            color: #F1C841;                           /* yellow */
+        }
+        .bracket-title p {
+            color: #2F1660;
+            font-style: italic;
+            background: #ecf3f9;
+            padding: 5px 15px;
+            border-radius: 50px;
+        }
+        .bracket {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px 10px;
+            justify-content: center;
+        }
+        .round {
+            flex: 1 1 220px;
+            background: #f8fafd;
+            border-radius: 28px;
+            padding: 18px 12px;
+            box-shadow: inset 0 0 0 1px #dde5ef;
+        }
+        .round-title {
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-size: 0.9rem;
+            color: #2F1660;
+            text-align: center;
+            border-bottom: 2px dashed #F1C841;       /* yellow dash */
+            padding-bottom: 12px;
+            margin-bottom: 18px;
+        }
+        .match {
+            background: white;
+            border-radius: 20px;
+            padding: 18px 12px;
+            margin-bottom: 22px;
+            box-shadow: 0 5px 12px rgba(47,22,96,0.08);
+            position: relative;
+            border-left: 5px solid #2F1660;          /* primary */
+        }
+        .plate .match {
+            border-left-color: #C61AFF;               /* secondary purple */
+        }
+        .match-title {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #2F1660;
+            margin-bottom: 8px;
+        }
+        .match-teams {
+            font-weight: 600;
+            font-size: 1.1rem;
+            color: #2F1660;
+            background: #eaf1f9;
+            display: inline-block;
+            padding: 5px 16px;
+            border-radius: 40px;
+            margin: 8px 0 8px;
+        }
+        .match-venue {
+            font-size: 0.9rem;
+            color: #1595FF;                           /* secondary blue */
+            margin: 8px 0 4px;
+        }
+        .venue-icon {
+            color: #F1C841;                            /* yellow */
+            width: 20px;
+        }
+        .format-badge {
+            display: inline-block;
+            background: #2F1660;                       /* primary */
+            color: white;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 30px;
+            letter-spacing: 0.4px;
+            margin-top: 6px;
+        }
+        .plate .format-badge {
+            background: #C61AFF;                        /* secondary purple */
+        }
+        .connector {
+            height: 18px;
+            width: 2px;
+            background: #F1C841;                        /* yellow */
+            margin: 10px auto 0;
+        }
+        .key-points {
+            background: #ffffffde;
+            border-radius: 36px;
+            padding: 32px 36px;
+            margin: 40px 0 30px;
+            box-shadow: 0 15px 30px rgba(47,22,96,0.12);
+            border: 1px solid white;
+        }
+        .key-points h2 {
+            margin-top: 0;
+            border-left-color: #C61AFF;                 /* purple */
+        }
+        .key-points ul {
+            list-style: none;
+            padding-left: 4px;
+        }
+        .key-points li {
+            padding: 8px 0 8px 26px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="%232F1660"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>') left center no-repeat;
+            background-size: 18px;
+        }
+        /* footer table – brand purple + yellow details */
+        .footer-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 50px;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 12px 30px rgba(47,22,96,0.3);
+        }
+        .footer-table td {
+            background: #2F1660;                /* PRIMARY */
+            padding: 22px 18px;
+            color: #ffffff;
+            border: none;
+            text-align: center;
+        }
+        .footer-table a {
+            color: #F1C841;                      /* yellow */
+            text-decoration: none;
+            font-weight: 700;
+        }
+        .footer-table .social-links a {
+            color: #ffffff;
+            font-weight: 500;
+            margin: 0 4px;
+            transition: color 0.2s;
+        }
+        .footer-table .social-links a:hover {
+            color: #F1C841;
+        }
+        .footer-table .social-links span.sep {
+            color: #F1C841;
+            margin: 0 2px;
+        }
+        .tribute-text {
+            padding-top: 14px;
+            font-size: 13px;
+            line-height: 1.5;
+            opacity: 0.95;
+            max-width: 750px;
+            margin: 0 auto;
+            color: #f0e6ff;
+        }
+        i.fas, i.far {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+<div class="fixtures-container">
+
+    <!-- SPRING BADGE ADDED HERE -->
+    <div style="display: flex; align-items: center; gap: 12px; margin-bottom: 10px;">
+        <span class="spring-badge"><i class="fas fa-seedling"></i> Spring Tournament 2026</span>
+    </div>
+
+    <!-- MAIN LEAGUE FIXTURES – brand headings updated -->
+    <h2><i class="fas fa-calendar-alt"></i> SHCL Season 2026<br>Spring Group Stage – Midlands & North</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Region</th>
+                <th>Ground 1</th>
+                <th>Match 1</th>
+                <th>Ground 2</th>
+                <th>Match 2</th>
+                <th>Bye Team</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr><td>19 April</td><td><span class="region-badge">Midlands</span></td><td class="ground-name">Cheltenham</td><td class="match-detail">Midlands vs Berkshire</td><td class="ground-name">Redditch</td><td class="match-detail">Shaheens vs Downtown</td><td><span class="bye-team">Kashir Kah</span></td></tr>
+            <tr><td>19 April</td><td><span class="region-badge">North</span></td><td class="ground-name">Leeds</td><td class="match-detail">Tabardars vs Qalandars</td><td class="ground-name">Winsford</td><td class="match-detail">Knights vs Shahzads</td><td><span class="bye-team">Titans</span></td></tr>
+            <tr><td>26 April</td><td><span class="region-badge">Midlands</span></td><td class="ground-name">Stafford</td><td class="match-detail">Kashir Kah vs Midlands</td><td class="ground-name">Oxford</td><td class="match-detail">Berkshire vs Shaheens</td><td><span class="bye-team">Downtown</span></td></tr>
+            <tr><td>26 April</td><td><span class="region-badge">North</span></td><td class="ground-name">Manchester</td><td class="match-detail">Titans vs Qalandars</td><td class="ground-name">Leeds</td><td class="match-detail">Tabardars vs Knights</td><td><span class="bye-team">Shahzads</span></td></tr>
+            <tr><td>3 May</td><td><span class="region-badge">Midlands</span></td><td class="ground-name">Cheltenham</td><td class="match-detail">Downtown vs Kashir Kah</td><td class="ground-name">Redditch</td><td class="match-detail">Midlands vs Shaheens</td><td><span class="bye-team">Berkshire</span></td></tr>
+            <tr><td>3 May</td><td><span class="region-badge">North</span></td><td class="ground-name">Manchester</td><td class="match-detail">Tabardars vs Shahzads</td><td class="ground-name">Winsford</td><td class="match-detail">Titans vs Knights</td><td><span class="bye-team">Qalandars</span></td></tr>
+            <tr><td>10 May</td><td><span class="region-badge">Midlands</span></td><td class="ground-name">Oxford</td><td class="match-detail">Berkshire vs Kashir Kah</td><td class="ground-name">Stafford</td><td class="match-detail">Downtown vs Midlands</td><td><span class="bye-team">Shaheens</span></td></tr>
+            <tr><td>10 May</td><td><span class="region-badge">North</span></td><td class="ground-name">Doncaster</td><td class="match-detail">Qalandars vs Shahzads</td><td class="ground-name">Leeds</td><td class="match-detail">Tabardars vs Titans</td><td><span class="bye-team">Knights</span></td></tr>
+            <tr><td>17 May</td><td><span class="region-badge">Midlands</span></td><td class="ground-name">Cheltenham</td><td class="match-detail">Shaheens vs Kashir Kah</td><td class="ground-name">Oxford</td><td class="match-detail">Berkshire vs Downtown</td><td><span class="bye-team">Midlands</span></td></tr>
+            <tr><td>17 May</td><td><span class="region-badge">North</span></td><td class="ground-name">Doncaster</td><td class="match-detail">Knights vs Qalandars</td><td class="ground-name">Winsford</td><td class="match-detail">Titans vs Shahzads</td><td><span class="bye-team">Tabardars</span></td></tr>
+        </tbody>
+    </table>
+
+    <!-- KNOCKOUT DIAGRAM SECTION (branded) -->
+    <h2><i class="fas fa-trophy"></i> SHCL Season 2026<br>Championship & Plate Knockout Stage – Cross Region</h2>
+    <div class="diagram-container">
+        <!-- Championship bracket (35 overs) -->
+        <div class="tournament-bracket">
+            <div class="bracket-title">
+                <h3><i class="fas fa-crown"></i> Championship Playoffs (35 Overs)</h3>
+                <p>Top 2 teams from each region qualify</p>
+            </div>
+            <div class="bracket championship">
+                <div class="round">
+                    <div class="round-title">Semi Finals</div>
+                    <div class="match">
+                        <div class="match-title">Championship Semi Final 1</div>
+                        <div class="match-teams">1st Midlands vs 2nd North</div>
+                        <div class="match-venue"><i class="fas fa-map-marker-alt venue-icon"></i> Neutral Venue</div>
+                        <div class="format-badge">35 Overs</div>
+                        <div class="connector"></div>
+                    </div>
+                    <div class="match">
+                        <div class="match-title">Championship Semi Final 2</div>
+                        <div class="match-teams">1st North vs 2nd Midlands</div>
+                        <div class="match-venue"><i class="fas fa-map-marker-alt venue-icon"></i> Neutral Venue</div>
+                        <div class="format-badge">35 Overs</div>
+                        <div class="connector"></div>
+                    </div>
+                </div>
+                <div class="round">
+                    <div class="round-title">Final</div>
+                    <div class="match">
+                        <div class="match-title">Championship Final</div>
+                        <div class="match-teams">Winner SF1 vs Winner SF2</div>
+                        <div class="match-venue"><i class="fas fa-map-marker-alt venue-icon"></i> Neutral Venue</div>
+                        <div class="format-badge">35 Overs</div>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top: 15px; font-style: italic; text-align: left;"><i class="fas fa-info-circle" style="color:#1595FF;"></i> All Championship playoff matches are played at separate neutral venues.</p>
+        </div>
+        
+        <!-- Plate bracket (T20) -->
+        <div class="tournament-bracket">
+            <div class="bracket-title">
+                <h3><i class="fas fa-shield-alt"></i> Plate Competition (T20 Knockout)</h3>
+                <p>Teams finishing 3rd-5th in each region qualify</p>
+            </div>
+            <div class="bracket plate">
+                <div class="round">
+                    <div class="round-title">Quarter Finals</div>
+                    <div class="match">
+                        <div class="match-title">Plate QF 1</div>
+                        <div class="match-teams">3rd Midlands vs 5th North</div>
+                        <div class="match-venue"><i class="fas fa-map-marker-alt venue-icon"></i> Shared Venue</div>
+                        <div class="format-badge">T20</div>
+                        <div class="connector"></div>
+                    </div>
+                    <div class="match">
+                        <div class="match-title">Plate QF 2</div>
+                        <div class="match-teams">4th Midlands vs 4th North</div>
+                        <div class="match-venue"><i class="fas fa-map-marker-alt venue-icon"></i> Shared Venue</div>
+                        <div class="format-badge">T20</div>
+                        <div class="connector"></div>
+                    </div>
+                    <div class="match">
+                        <div class="match-title">Plate QF 3</div>
+                        <div class="match-teams">5th Midlands vs 3rd North</div>
+                        <div class="match-venue"><i class="fas fa-map-marker-alt venue-icon"></i> Shared Venue</div>
+                        <div class="format-badge">T20</div>
+                        <div class="connector"></div>
+                    </div>
+                </div>
+                <div class="round">
+                    <div class="round-title">Semi Finals</div>
+                    <div class="match">
+                        <div class="match-title">Plate Semi Final 1</div>
+                        <div class="match-teams">Winner QF1 vs Winner QF3</div>
+                        <div class="match-venue"><i class="fas fa-map-marker-alt venue-icon"></i> Separate Venue</div>
+                        <div class="format-badge">T20</div>
+                        <div class="connector"></div>
+                    </div>
+                    <div class="match">
+                        <div class="match-title">Plate Semi Final 2</div>
+                        <div class="match-teams">Winner QF2 vs Best Runner-Up*</div>
+                        <div class="match-venue"><i class="fas fa-map-marker-alt venue-icon"></i> Final Venue</div>
+                        <div class="format-badge">T20</div>
+                        <div class="connector"></div>
+                    </div>
+                </div>
+                <div class="round">
+                    <div class="round-title">Final</div>
+                    <div class="match">
+                        <div class="match-title">Plate Final</div>
+                        <div class="match-teams">Winner SF1 vs Winner SF2</div>
+                        <div class="match-venue"><i class="fas fa-map-marker-alt venue-icon"></i> Same venue as SF2</div>
+                        <div class="format-badge">T20</div>
+                    </div>
+                </div>
+            </div>
+            <p style="margin-top: 15px; font-style: italic; text-align: left;"><i class="fas fa-info-circle" style="color:#1595FF;"></i> Plate Quarter Finals: All 3 matches at one shared venue.</p>
+            <p style="margin-top: 5px; font-style: italic; text-align: left;"><i class="fas fa-info-circle" style="color:#1595FF;"></i> Plate Semi Finals and Finals: 2 Semi Finals and Final at two shared venues.</p>
+        </div>
+    </div>
+
+
+    <!-- format highlights -->
+    <div class="key-points">
+        <h2><i class="fas fa-star"></i> Tournament Format Highlights</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+            <div style="flex: 1; min-width: 300px;">
+                <h3 style="color:#2F1660;"><i class="fas fa-table" style="color:#F1C841;"></i> Group Stage (35 Overs)</h3>
+                <ul>
+                    <li><strong>Round Robin format</strong> ensures each team plays 4 matches</li>
+                    <li><strong>Two regional groups</strong> of 5 teams each</li>
+                    <li>Matches played over <strong>35 overs per side</strong></li>
+                    <li>League table determines qualification for knockouts</li>
+                    <li>Provides balanced competition before knockout stages</li>
+                </ul>
+            </div>
+            <div style="flex: 1; min-width: 300px;">
+                <h3 style="color:#2F1660;"><i class="fas fa-shield-alt" style="color:#C61AFF;"></i> Plate Competition Benefits</h3>
+                <ul>
+                    <li><strong>Additional competitive matches</strong> for teams outside Championship places</li>
+                    <li><strong>Shorter, spectator-friendly T20 games</strong> for knockout stages</li>
+                    <li><strong>Efficient shared venue usage</strong> with multiple matches at same location</li>
+                    <li><strong>Continued engagement</strong> for all teams throughout tournament</li>
+                    <li><strong>Knockout excitement</strong> with clear path to Plate trophy</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER (exact brand purple, yellow links) -->
+    <table class="footer-table">
+        <tr>
+            <td align="center">
+                <div style="font-size:15px; line-height:22px; font-weight:700;">
+                    <a href="https://shahehamadanlge.play-cricket.com/home" target="_blank">
+                        Play-Cricket SHCL Site
+                    </a>
+                </div>
+                <div style="padding-top:12px; font-size:13px; line-height:20px;" class="social-links">
+                    <a href="https://www.facebook.com/people/Shah-e-Hamadan-Cricket-League-England/61558713082083/" target="_blank">Facebook</a>
+                    <span style="color:#F1C841;"> | </span>
+                    <a href="https://www.instagram.com/shahe_hamadan" target="_blank">Instagram</a>
+                    <span style="color:#F1C841;"> | </span>
+                    <a href="https://x.com/shahe_hamadan" target="_blank">X</a>
+                    <span style="color:#F1C841;"> | </span>
+                    <a href="https://www.youtube.com/channel/UCoIdWhrnBcGd7TZeyg0eGiQ" target="_blank">YouTube</a>
+                    <span style="color:#F1C841;"> | </span>
+                    <a href="https://www.tiktok.com/@shahhamadancricketleague" target="_blank">TikTok</a>
+                </div>
+            </td>
+        </tr>
+    </table>
+
+</div>
+</body>
+</html>
