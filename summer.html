@@ -55,22 +55,58 @@
             h2 { font-size: 1.5rem; }
         }
 
-        /* ----- RESPONSIVE TABLE (scroll on mobile) ----- */
+        /* FULLY RESPONSIVE TABLE - horizontal scroll on mobile */
         .table-responsive {
             width: 100%;
             overflow-x: auto;
             -webkit-overflow-scrolling: touch;
             margin-bottom: 30px;
             border-radius: 24px;
+            background: white;
             box-shadow: 0 8px 22px rgba(47,22,96,0.12);
         }
+        
+        /* Add visual indicator for scrollable content on mobile */
+        .table-responsive::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 40px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8));
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s;
+            border-radius: 0 24px 24px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .table-responsive {
+                position: relative;
+                border-radius: 24px;
+            }
+            .table-responsive::after {
+                opacity: 1;
+            }
+        }
+        
         table {
             border-collapse: collapse;
             width: 100%;
             background: white;
             font-size: 0.95rem;
-            min-width: 700px;   /* ensures scrolling instead of squishing */
+            min-width: 800px; /* Forces horizontal scroll on mobile, shows ALL columns */
         }
+        
+        /* Alternative: If you want even more compact, we can adjust the min-width */
+        @media (max-width: 480px) {
+            table {
+                min-width: 750px; /* Still shows all columns but slightly tighter */
+                font-size: 0.85rem;
+            }
+        }
+        
         th {
             background: #2F1660;
             color: white;
@@ -78,14 +114,14 @@
             text-transform: uppercase;
             letter-spacing: 0.5px;
             font-size: 0.8rem;
-            padding: 16px 6px;
+            padding: 16px 8px;
             text-align: center;
             border-right: 1px solid #593c8a;
             white-space: nowrap;
         }
         th:last-child { border-right: none; }
         td {
-            padding: 14px 6px;
+            padding: 14px 8px;
             border-bottom: 1px solid #e2e8f0;
             text-align: center;
             vertical-align: middle;
@@ -289,15 +325,39 @@
             .icon { width: 40px; height: 40px; font-size: 18px; }
             .social { gap: 10px; }
         }
+        
+        /* Scroll hint for mobile */
+        .scroll-hint {
+            display: none;
+            text-align: right;
+            font-size: 0.8rem;
+            color: #2F1660;
+            margin-bottom: 5px;
+            padding-right: 10px;
+        }
+        .scroll-hint i {
+            color: #C61AFF;
+            margin-right: 5px;
+        }
+        @media (max-width: 768px) {
+            .scroll-hint {
+                display: block;
+            }
+        }
     </style>
 </head>
 <body>
 <div class="fixtures-container">
     <!-- Summer badge -->
     <div><span class="summer-badge"><i class="fas fa-sun"></i> Summer Tournament 2026</span></div>
-    <h2><i class="fas fa-calendar-alt"></i> SHCL Season 2026<br>Summer Group Stage – Midlands & North</h2>
+    <h2><i class="fas fa-calendar-alt"></i> Group Stage Fixtures</h2>
 
-    <!-- TABLE with horizontal scroll on mobile -->
+    <!-- Scroll hint for mobile users -->
+    <div class="scroll-hint">
+        <i class="fas fa-arrow-left"></i> Swipe to see all columns <i class="fas fa-arrow-right"></i>
+    </div>
+
+    <!-- TABLE with horizontal scroll on mobile - ALL COLUMNS VISIBLE -->
     <div class="table-responsive">
         <table>
             <thead><tr><th>Date</th><th>Region</th><th>Ground 1</th><th>Match 1</th><th>Ground 2</th><th>Match 2</th><th>Bye Team</th></tr></thead>
@@ -316,7 +376,7 @@
         </table>
     </div>
 
-    <h2><i class="fas fa-trophy"></i> SHCL Season 2026<br>Summer Knockout – Championship & Plate</h2>
+    <h2><i class="fas fa-trophy"></i>Knockout Stage Fixtures</h2>
     <div class="diagram-container">
         <!-- Championship bracket -->
         <div class="tournament-bracket">
@@ -354,7 +414,7 @@
 
     <!-- Format highlights -->
     <div class="key-points">
-        <h2><i class="fas fa-star"></i> Summer Tournament – Format Highlights</h2>
+        <h2><i class="fas fa-star"></i>Format Highlights</h2>
         <div style="display:flex; flex-wrap:wrap; gap:20px;">
             <div style="flex:1; min-width:260px;"><h3 style="color:#2F1660;"><i class="fas fa-table" style="color:#F1C841;"></i> Group Stage (35 Overs)</h3><ul><li><strong>Round Robin</strong> – 4 matches per team</li><li><strong>Two regions</strong> of 5 teams</li><li>35 overs per side</li><li>Top 2 → Championship; next 3 → Plate</li></ul></div>
             <div style="flex:1; min-width:260px;"><h3 style="color:#2F1660;"><i class="fas fa-shield-alt" style="color:#C61AFF;"></i> Plate (T20 Knockout)</h3><ul><li>QF 19 July (3 matches, shared venue)</li><li>SF & Final 26 July (two venues)</li><li>Best runner‑up advances</li><li>Fast‑paced T20 excitement</li></ul></div>
@@ -363,7 +423,7 @@
 
     <!-- footer exactly as index -->
     <footer class="footer">
-        <div class="name">SHAH-E-HAMADAN Cricket League England</div>
+        <div class="name">Shah-e-Hamadan Cricket League England</div>
         <div class="tagline">Committed to Unity · Excellence · Tradition</div>
         <div class="social">
             <a class="icon ig" href="https://www.instagram.com/shahe_hamadan" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
