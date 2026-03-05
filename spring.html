@@ -55,6 +55,48 @@
             h2 { font-size: 1.5rem; }
         }
 
+        /* Filter Controls */
+        .filter-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 20px 0 30px;
+            align-items: center;
+        }
+        .filter-btn {
+            padding: 10px 24px;
+            border: none;
+            border-radius: 40px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: white;
+            color: #2F1660;
+            box-shadow: 0 4px 12px rgba(47,22,96,0.1);
+            border: 2px solid transparent;
+        }
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(47,22,96,0.15);
+        }
+        .filter-btn.active {
+            background: #2F1660;
+            color: white;
+            border-color: #F1C841;
+        }
+        .filter-btn.midlands.active { background: #2F1660; }
+        .filter-btn.north.active { background: #C61AFF; }
+        .filter-count {
+            margin-left: auto;
+            background: #eef2f6;
+            padding: 8px 18px;
+            border-radius: 40px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #2F1660;
+        }
+
         /* FULLY RESPONSIVE TABLE - horizontal scroll on mobile */
         .table-responsive {
             width: 100%;
@@ -344,6 +386,15 @@
                 display: block;
             }
         }
+        
+        /* Animation for filtered rows */
+        @keyframes fadeIn {
+            from { opacity: 0.5; }
+            to { opacity: 1; }
+        }
+        .filtered-row {
+            animation: fadeIn 0.3s ease;
+        }
     </style>
 </head>
 <body>
@@ -352,6 +403,14 @@
     <div><span class="spring-badge"><i class="fas fa-seedling"></i> Spring Tournament 2026</span></div>
     <h2><i class="fas fa-calendar-alt"></i>Group Stage Fixtures</h2>
 
+    <!-- Region Filter Buttons -->
+    <div class="filter-container">
+        <button class="filter-btn active" data-filter="full">Full <i class="fas fa-globe"></i></button>
+        <button class="filter-btn midlands" data-filter="Midlands">Midlands <i class="fas fa-map-pin"></i></button>
+        <button class="filter-btn north" data-filter="North">North <i class="fas fa-map-pin"></i></button>
+        <span class="filter-count" id="fixtureCount">Showing all 10 fixtures</span>
+    </div>
+
     <!-- Scroll hint for mobile users -->
     <div class="scroll-hint">
         <i class="fas fa-arrow-left"></i> Swipe to see all columns <i class="fas fa-arrow-right"></i>
@@ -359,19 +418,19 @@
 
     <!-- TABLE with horizontal scroll on mobile - ALL COLUMNS VISIBLE -->
     <div class="table-responsive">
-        <table>
+        <table id="fixturesTable">
             <thead><tr><th>Date</th><th>Region</th><th>Ground 1</th><th>Match 1</th><th>Ground 2</th><th>Match 2</th><th>Bye Team</th></tr></thead>
             <tbody>
-                <tr><td>19 April</td><td><span class="region-badge">Midlands</span></td><td class="ground-name">Oxford</td><td class="match-detail">Midlands vs Berkshire</td><td class="ground-name">Stoke</td><td class="match-detail">Shaheens vs Downtown</td><td><span class="bye-team">Kashir Kah</span></td></tr>
-                <tr><td>19 April</td><td><span class="region-badge">North</span></td><td class="ground-name">Leeds</td><td class="match-detail">Tabardars vs Qalandars</td><td class="ground-name">Winsford</td><td class="match-detail">Knights vs Shahzads</td><td><span class="bye-team">Titans</span></td></tr>
-                <tr><td>26 April</td><td><span class="region-badge">Midlands</span></td><td class="ground-name">Rushwich</td><td class="match-detail">Kashir Kah vs Midlands</td><td class="ground-name">Oxford</td><td class="match-detail">Berkshire vs Shaheens</td><td><span class="bye-team">Downtown</span></td></tr>
-                <tr><td>26 April</td><td><span class="region-badge">North</span></td><td class="ground-name">Manchester</td><td class="match-detail">Titans vs Qalandars</td><td class="ground-name">Leeds</td><td class="match-detail">Tabardars vs Knights</td><td><span class="bye-team">Shahzads</span></td></tr>
-                <tr><td>3 May</td><td><span class="region-badge">Midlands</span></td><td class="ground-name">Rushwich</td><td class="match-detail">Downtown vs Kashir Kah</td><td class="ground-name">Stoke</td><td class="match-detail">Midlands vs Shaheens</td><td><span class="bye-team">Berkshire</span></td></tr>
-                <tr><td>3 May</td><td><span class="region-badge">North</span></td><td class="ground-name">Manchester</td><td class="match-detail">Tabardars vs Shahzads</td><td class="ground-name">Winsford</td><td class="match-detail">Titans vs Knights</td><td><span class="bye-team">Qalandars</span></td></tr>
-                <tr><td>10 May</td><td><span class="region-badge">Midlands</span></td><td class="ground-name">Rushwich</td><td class="match-detail">Berkshire vs Kashir Kah</td><td class="ground-name">Stafford</td><td class="match-detail">Downtown vs Midlands</td><td><span class="bye-team">Shaheens</span></td></tr>
-                <tr><td>10 May</td><td><span class="region-badge">North</span></td><td class="ground-name">Doncaster</td><td class="match-detail">Qalandars vs Shahzads</td><td class="ground-name">Leeds</td><td class="match-detail">Tabardars vs Titans</td><td><span class="bye-team">Knights</span></td></tr>
-                <tr><td>17 May</td><td><span class="region-badge">Midlands</span></td><td class="ground-name">Ledbury</td><td class="match-detail">Shaheens vs Kashir Kah</td><td class="ground-name">Oxford</td><td class="match-detail">Berkshire vs Downtown</td><td><span class="bye-team">Midlands</span></td></tr>
-                <tr><td>17 May</td><td><span class="region-badge">North</span></td><td class="ground-name">Doncaster</td><td class="match-detail">Knights vs Qalandars</td><td class="ground-name">Winsford</td><td class="match-detail">Titans vs Shahzads</td><td><span class="bye-team">Tabardars</span></td></tr>
+                <tr data-region="Midlands"><td>19 April</td><td><span class="region-badge">Midlands</span></td><td class="ground-name">Oxford</td><td class="match-detail">Midlands vs Berkshire</td><td class="ground-name">Stoke</td><td class="match-detail">Shaheens vs Downtown</td><td><span class="bye-team">Kashir Kah</span></td></tr>
+                <tr data-region="North"><td>19 April</td><td><span class="region-badge">North</span></td><td class="ground-name">Leeds</td><td class="match-detail">Tabardars vs Qalandars</td><td class="ground-name">Winsford</td><td class="match-detail">Knights vs Shahzads</td><td><span class="bye-team">Titans</span></td></tr>
+                <tr data-region="Midlands"><td>26 April</td><td><span class="region-badge">Midlands</span></td><td class="ground-name">Rushwich</td><td class="match-detail">Kashir Kah vs Midlands</td><td class="ground-name">Oxford</td><td class="match-detail">Berkshire vs Shaheens</td><td><span class="bye-team">Downtown</span></td></tr>
+                <tr data-region="North"><td>26 April</td><td><span class="region-badge">North</span></td><td class="ground-name">Manchester</td><td class="match-detail">Titans vs Qalandars</td><td class="ground-name">Leeds</td><td class="match-detail">Tabardars vs Knights</td><td><span class="bye-team">Shahzads</span></td></tr>
+                <tr data-region="Midlands"><td>3 May</td><td><span class="region-badge">Midlands</span></td><td class="ground-name">Rushwich</td><td class="match-detail">Downtown vs Kashir Kah</td><td class="ground-name">Stoke</td><td class="match-detail">Midlands vs Shaheens</td><td><span class="bye-team">Berkshire</span></td></tr>
+                <tr data-region="North"><td>3 May</td><td><span class="region-badge">North</span></td><td class="ground-name">Manchester</td><td class="match-detail">Tabardars vs Shahzads</td><td class="ground-name">Winsford</td><td class="match-detail">Titans vs Knights</td><td><span class="bye-team">Qalandars</span></td></tr>
+                <tr data-region="Midlands"><td>10 May</td><td><span class="region-badge">Midlands</span></td><td class="ground-name">Rushwich</td><td class="match-detail">Berkshire vs Kashir Kah</td><td class="ground-name">Stafford</td><td class="match-detail">Downtown vs Midlands</td><td><span class="bye-team">Shaheens</span></td></tr>
+                <tr data-region="North"><td>10 May</td><td><span class="region-badge">North</span></td><td class="ground-name">Doncaster</td><td class="match-detail">Qalandars vs Shahzads</td><td class="ground-name">Leeds</td><td class="match-detail">Tabardars vs Titans</td><td><span class="bye-team">Knights</span></td></tr>
+                <tr data-region="Midlands"><td>17 May</td><td><span class="region-badge">Midlands</span></td><td class="ground-name">Ledbury</td><td class="match-detail">Shaheens vs Kashir Kah</td><td class="ground-name">Oxford</td><td class="match-detail">Berkshire vs Downtown</td><td><span class="bye-team">Midlands</span></td></tr>
+                <tr data-region="North"><td>17 May</td><td><span class="region-badge">North</span></td><td class="ground-name">Doncaster</td><td class="match-detail">Knights vs Qalandars</td><td class="ground-name">Winsford</td><td class="match-detail">Titans vs Shahzads</td><td><span class="bye-team">Tabardars</span></td></tr>
             </tbody>
         </table>
     </div>
@@ -435,5 +494,59 @@
         </div>
     </footer>
 </div>
+
+<!-- JavaScript for Region Filtering -->
+<script>
+    (function() {
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const tableRows = document.querySelectorAll('#fixturesTable tbody tr');
+        const fixtureCount = document.getElementById('fixtureCount');
+        
+        // Function to update visible rows based on selected filter
+        function filterTable(region) {
+            let visibleCount = 0;
+            
+            tableRows.forEach(row => {
+                const rowRegion = row.getAttribute('data-region');
+                
+                if (region === 'full' || rowRegion === region) {
+                    row.style.display = '';
+                    row.classList.add('filtered-row');
+                    visibleCount++;
+                } else {
+                    row.style.display = 'none';
+                    row.classList.remove('filtered-row');
+                }
+            });
+            
+            // Update count text
+            if (region === 'full') {
+                fixtureCount.textContent = `Showing all ${visibleCount} fixtures`;
+            } else {
+                fixtureCount.textContent = `Showing ${visibleCount} ${region} fixtures`;
+            }
+        }
+        
+        // Add click handlers to filter buttons
+        filterButtons.forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove active class from all buttons
+                filterButtons.forEach(b => b.classList.remove('active'));
+                
+                // Add active class to clicked button
+                this.classList.add('active');
+                
+                // Get filter value
+                const filterValue = this.getAttribute('data-filter');
+                
+                // Apply filter
+                filterTable(filterValue);
+            });
+        });
+        
+        // Initialize with full view (already active by default)
+        filterTable('full');
+    })();
+</script>
 </body>
 </html>
