@@ -2,15 +2,19 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <title>SHCL Spring 2026 – group & knockout · Midlands & North</title>
-    <!-- Montserrat + FA (same as before) -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <title>SHCL Spring 2026 – Group & Knockout | Midlands & North</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
             background: #f0f4f8;
             font-family: 'Montserrat', 'Segoe UI', Roboto, sans-serif;
@@ -19,11 +23,12 @@
             flex-direction: column;
             align-items: center;
         }
+
         .fixtures-container {
             max-width: 1400px;
             width: 100%;
         }
-        /* spring badge */
+
         .spring-badge {
             background: #C61AFF;
             color: white;
@@ -34,10 +39,14 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            box-shadow: 0 4px 10px rgba(198,26,255,0.3);
+            box-shadow: 0 4px 10px rgba(198, 26, 255, 0.3);
             margin-bottom: 15px;
         }
-        .spring-badge i { color: #F1C841; }
+
+        .spring-badge i {
+            color: #F1C841;
+        }
+
         h2 {
             color: #2F1660;
             border-left: 6px solid #F1C841;
@@ -50,12 +59,18 @@
             gap: 12px;
             flex-wrap: wrap;
         }
-        h2 i { color: #F1C841; font-size: 1.8rem; }
-        @media (max-width: 600px) {
-            h2 { font-size: 1.5rem; }
+
+        h2 i {
+            color: #F1C841;
+            font-size: 1.8rem;
         }
 
-        /* Filter Controls */
+        @media (max-width: 600px) {
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+
         .filter-container {
             display: flex;
             flex-wrap: wrap;
@@ -63,6 +78,7 @@
             margin: 20px 0 30px;
             align-items: center;
         }
+
         .filter-btn {
             padding: 10px 24px;
             border: none;
@@ -73,20 +89,29 @@
             transition: all 0.2s ease;
             background: white;
             color: #2F1660;
-            box-shadow: 0 4px 12px rgba(47,22,96,0.1);
+            box-shadow: 0 4px 12px rgba(47, 22, 96, 0.1);
             border: 2px solid transparent;
         }
+
         .filter-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 18px rgba(47,22,96,0.15);
+            box-shadow: 0 8px 18px rgba(47, 22, 96, 0.15);
         }
+
         .filter-btn.active {
             background: #2F1660;
             color: white;
             border-color: #F1C841;
         }
-        .filter-btn.midlands.active { background: #2F1660; }
-        .filter-btn.north.active { background: #C61AFF; }
+
+        .filter-btn.midlands.active {
+            background: #2F1660;
+        }
+
+        .filter-btn.north.active {
+            background: #C61AFF;
+        }
+
         .filter-count {
             margin-left: auto;
             background: #eef2f6;
@@ -97,7 +122,6 @@
             color: #2F1660;
         }
 
-        /* FULLY RESPONSIVE TABLE - horizontal scroll on mobile */
         .table-responsive {
             width: 100%;
             overflow-x: auto;
@@ -105,50 +129,24 @@
             margin-bottom: 30px;
             border-radius: 24px;
             background: white;
-            box-shadow: 0 8px 22px rgba(47,22,96,0.12);
+            box-shadow: 0 8px 22px rgba(47, 22, 96, 0.12);
         }
-        
-        /* Add visual indicator for scrollable content on mobile */
-        .table-responsive::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            bottom: 0;
-            width: 40px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.8));
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s;
-            border-radius: 0 24px 24px 0;
-        }
-        
-        @media (max-width: 768px) {
-            .table-responsive {
-                position: relative;
-                border-radius: 24px;
-            }
-            .table-responsive::after {
-                opacity: 1;
-            }
-        }
-        
+
         table {
             border-collapse: collapse;
             width: 100%;
             background: white;
             font-size: 0.95rem;
-            min-width: 800px; /* Forces horizontal scroll on mobile, shows ALL columns */
+            min-width: 900px;
         }
-        
-        /* Alternative: If you want even more compact, we can adjust the min-width */
+
         @media (max-width: 480px) {
             table {
-                min-width: 750px; /* Still shows all columns but slightly tighter */
+                min-width: 850px;
                 font-size: 0.85rem;
             }
         }
-        
+
         th {
             background: #2F1660;
             color: white;
@@ -161,16 +159,22 @@
             border-right: 1px solid #593c8a;
             white-space: nowrap;
         }
-        th:last-child { border-right: none; }
+
+        th:last-child {
+            border-right: none;
+        }
+
         td {
             padding: 14px 8px;
             border-bottom: 1px solid #e2e8f0;
             text-align: center;
             vertical-align: middle;
             background: white;
-            white-space: nowrap;
         }
-        tr:last-child td { border-bottom: none; }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
 
         .region-badge {
             background: #eef2f6;
@@ -181,14 +185,13 @@
             display: inline-block;
             font-size: 0.75rem;
         }
-        .ground-name {
-            font-weight: 500;
-            color: #2F1660;
-        }
+
         .match-detail {
             font-weight: 500;
             color: #1e3a5f;
+            white-space: nowrap;
         }
+
         .bye-team {
             background: #f8f0e3;
             font-weight: 600;
@@ -200,22 +203,50 @@
             display: inline-block;
         }
 
-        /* knockout diagrams (they already wrap) */
+        .ground-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: #f0f7ff;
+            padding: 6px 14px;
+            border-radius: 40px;
+            text-decoration: none;
+            color: #1A88F5;
+            font-weight: 600;
+            font-size: 0.85rem;
+            transition: all 0.2s ease;
+            border: 1px solid #cde3fe;
+            white-space: nowrap;
+        }
+
+        .ground-link:hover {
+            background: #e2efff;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(26, 136, 245, 0.2);
+        }
+
+        .ground-link .venue-icon {
+            color: #F1C841;
+            font-size: 0.9rem;
+        }
+
         .diagram-container {
             display: flex;
             flex-wrap: wrap;
             gap: 30px;
             margin: 30px 0;
         }
+
         .tournament-bracket {
             flex: 1 1 400px;
             background: white;
             border-radius: 32px;
-            box-shadow: 0 14px 32px rgba(47,22,96,0.15);
+            box-shadow: 0 14px 32px rgba(47, 22, 96, 0.15);
             padding: 24px 16px;
-            border: 1px solid rgba(98,48,148,0.2);
-            overflow-x: auto;   /* safety for very small screens */
+            border: 1px solid rgba(98, 48, 148, 0.2);
+            overflow-x: auto;
         }
+
         .bracket-title {
             border-bottom: 2px solid #F1C841;
             padding-bottom: 15px;
@@ -226,6 +257,7 @@
             gap: 10px;
             justify-content: space-between;
         }
+
         .bracket-title h3 {
             font-size: 1.6rem;
             font-weight: 600;
@@ -234,7 +266,11 @@
             align-items: center;
             gap: 8px;
         }
-        .bracket-title h3 i { color: #F1C841; }
+
+        .bracket-title h3 i {
+            color: #F1C841;
+        }
+
         .bracket-title p {
             background: #ecf3f9;
             padding: 5px 15px;
@@ -242,12 +278,14 @@
             color: #2F1660;
             font-style: italic;
         }
+
         .bracket {
             display: flex;
             flex-wrap: wrap;
             gap: 20px 10px;
             justify-content: center;
         }
+
         .round {
             flex: 1 1 220px;
             background: #f8fafd;
@@ -255,6 +293,7 @@
             padding: 18px 10px;
             box-shadow: inset 0 0 0 1px #dde5ef;
         }
+
         .round-title {
             font-weight: 700;
             text-transform: uppercase;
@@ -265,16 +304,27 @@
             padding-bottom: 10px;
             margin-bottom: 15px;
         }
+
         .match {
             background: white;
             border-radius: 20px;
             padding: 16px 10px;
             margin-bottom: 20px;
-            box-shadow: 0 5px 12px rgba(47,22,96,0.08);
+            box-shadow: 0 5px 12px rgba(47, 22, 96, 0.08);
             border-left: 5px solid #2F1660;
         }
-        .plate .match { border-left-color: #C61AFF; }
-        .match-title { font-weight: 700; color: #2F1660; margin-bottom: 6px; font-size: 0.95rem; }
+
+        .plate .match {
+            border-left-color: #C61AFF;
+        }
+
+        .match-title {
+            font-weight: 700;
+            color: #2F1660;
+            margin-bottom: 6px;
+            font-size: 0.95rem;
+        }
+
         .match-teams {
             font-weight: 600;
             background: #eaf1f9;
@@ -284,8 +334,18 @@
             margin: 6px 0;
             font-size: 1rem;
         }
-        .match-venue { font-size: 0.85rem; color: #1595FF; margin: 6px 0; }
-        .venue-icon { color: #F1C841; width: 18px; }
+
+        .match-venue {
+            font-size: 0.85rem;
+            color: #1595FF;
+            margin: 6px 0;
+        }
+
+        .venue-icon {
+            color: #F1C841;
+            margin-right: 4px;
+        }
+
         .format-badge {
             background: #2F1660;
             color: white;
@@ -295,48 +355,65 @@
             display: inline-block;
             margin-top: 5px;
         }
-        .plate .format-badge { background: #C61AFF; }
+
+        .plate .format-badge {
+            background: #C61AFF;
+        }
+
         .connector {
             height: 16px;
             width: 2px;
             background: #F1C841;
             margin: 8px auto 0;
         }
+
         .key-points {
             background: #ffffffde;
             border-radius: 36px;
             padding: 28px 24px;
             margin: 40px 0 30px;
-            box-shadow: 0 15px 30px rgba(47,22,96,0.12);
+            box-shadow: 0 15px 30px rgba(47, 22, 96, 0.12);
         }
-        .key-points h2 { margin-top: 0; border-left-color: #C61AFF; }
-        .key-points ul { list-style: none; padding-left: 4px; }
+
+        .key-points h2 {
+            margin-top: 0;
+            border-left-color: #C61AFF;
+        }
+
+        .key-points ul {
+            list-style: none;
+            padding-left: 4px;
+        }
+
         .key-points li {
             padding: 6px 0 6px 26px;
             background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="%232F1660"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>') left center no-repeat;
             background-size: 18px;
         }
-        /* footer exactly as index */
+
         .footer {
             background: #fff;
             padding: 40px 18px 44px;
             text-align: center;
             margin-top: 50px;
             border-radius: 30px;
-            box-shadow: 0 12px 30px rgba(47,22,96,0.15);
+            box-shadow: 0 12px 30px rgba(47, 22, 96, 0.15);
         }
+
         .footer .name {
             font-weight: 900;
             letter-spacing: 0.6px;
             font-size: 18px;
             color: #2F1660;
         }
+
         .footer .tagline {
             margin-top: 6px;
             font-weight: 600;
             font-size: 14px;
             color: #2F1660;
         }
+
         .social {
             margin-top: 22px;
             display: flex;
@@ -344,6 +421,7 @@
             gap: 14px;
             flex-wrap: wrap;
         }
+
         .icon {
             width: 44px;
             height: 44px;
@@ -353,22 +431,23 @@
             justify-content: center;
             color: #fff;
             text-decoration: none;
-            box-shadow: 0 10px 18px rgba(0,0,0,0.08);
+            box-shadow: 0 10px 18px rgba(0, 0, 0, 0.08);
             font-size: 20px;
         }
+
         .ig { background: #E1306C; }
         .yt { background: #FF0000; }
         .x { background: #111; }
         .tt { background: #000; }
         .fb { background: #1877F2; }
         .link { background: #6b7280; }
+
         @media (max-width: 720px) {
             .footer .name { font-size: 16px; }
             .icon { width: 40px; height: 40px; font-size: 18px; }
             .social { gap: 10px; }
         }
-        
-        /* Scroll hint for mobile */
+
         .scroll-hint {
             display: none;
             text-align: right;
@@ -377,67 +456,214 @@
             margin-bottom: 5px;
             padding-right: 10px;
         }
+
         .scroll-hint i {
             color: #C61AFF;
             margin-right: 5px;
         }
+
         @media (max-width: 768px) {
             .scroll-hint {
                 display: block;
             }
         }
-        
-        /* Animation for filtered rows */
+
+        .filtered-row {
+            animation: fadeIn 0.3s ease;
+        }
+
         @keyframes fadeIn {
             from { opacity: 0.5; }
             to { opacity: 1; }
         }
-        .filtered-row {
-            animation: fadeIn 0.3s ease;
+
+        .update-toast {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background: #2F1660;
+            color: white;
+            padding: 14px 22px;
+            border-radius: 60px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            backdrop-filter: blur(4px);
+            border-left: 5px solid #F1C841;
+            transition: opacity 0.2s;
+            pointer-events: none;
+        }
+
+        .preponed-badge {
+            background: #F1C84120;
+            padding: 2px 8px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            margin-left: 6px;
+            display: inline-block;
+            font-weight: 500;
+        }
+        
+        .highlight-row {
+            background: #FFF8E7;
+            transition: background 0.5s;
         }
     </style>
 </head>
 <body>
 <div class="fixtures-container">
-    <!-- Spring badge -->
-    <div><span class="spring-badge"><i class="fas fa-seedling"></i> Spring Tournament 2026</span></div>
-    <h2><i class="fas fa-calendar-alt"></i>Group Stage Fixtures</h2>
+    <div><span class="spring-badge"><i class="fas fa-seedling"></i> Spring Tournament 2026 · 20 Group Stage Fixtures (10 per region)</span></div>
+    <h2><i class="fas fa-calendar-alt"></i> Group Stage Fixtures · 20 Matches</h2>
 
-    <!-- Region Filter Buttons -->
     <div class="filter-container">
-        <button class="filter-btn active" data-filter="full">Full <i class="fas fa-globe"></i></button>
-        <button class="filter-btn midlands" data-filter="Midlands">Midlands <i class="fas fa-map-pin"></i></button>
-        <button class="filter-btn north" data-filter="North">North <i class="fas fa-map-pin"></i></button>
-        <span class="filter-count" id="fixtureCount">Showing all 10 fixtures</span>
+        <button class="filter-btn active" data-filter="full">Full <i class="fas fa-globe"></i> (20)</button>
+        <button class="filter-btn midlands" data-filter="Midlands">Midlands <i class="fas fa-map-pin"></i> (10)</button>
+        <button class="filter-btn north" data-filter="North">North <i class="fas fa-map-pin"></i> (10)</button>
+        <span class="filter-count" id="fixtureCount">Showing all 20 fixtures</span>
     </div>
 
-    <!-- Scroll hint for mobile users -->
     <div class="scroll-hint">
         <i class="fas fa-arrow-left"></i> Swipe to see all columns <i class="fas fa-arrow-right"></i>
     </div>
 
-    <!-- TABLE with horizontal scroll on mobile - ALL COLUMNS VISIBLE -->
     <div class="table-responsive">
         <table id="fixturesTable">
-            <thead><tr><th>Date</th><th>Region</th><th>Ground 1</th><th>Match 1</th><th>Ground 2</th><th>Match 2</th><th>Bye Team</th></tr></thead>
+            <thead>
+                <tr><th>Date</th><th>Region</th><th>Venue</th><th>Match 1</th><th>Venue</th><th>Match 2</th><th>Bye Team</th></tr>
+            </thead>
             <tbody>
-                <tr data-region="Midlands"><td>19 April</td><td><span class="region-badge">Midlands</span></td><td class="ground-name">Oxford</td><td class="match-detail">Midlands vs Berkshire</td><td class="ground-name">Stoke</td><td class="match-detail">Shaheens vs Downtown</td><td><span class="bye-team">Kashir Kah</span></td></tr>
-                <tr data-region="North"><td>19 April</td><td><span class="region-badge">North</span></td><td class="ground-name">Denton</td><td class="match-detail">Titans vs Qalandars</td><td class="ground-name">Winsford</td><td class="match-detail">Knights vs Shahzads</td><td><span class="bye-team">Tabardars</span></td></tr>
-                <tr data-region="Midlands"><td>26 April</td><td><span class="region-badge">Midlands</span></td><td class="ground-name">Redditch</td><td class="match-detail">Kashir Kah vs Midlands</td><td class="ground-name">Oxford</td><td class="match-detail">Berkshire vs Shaheens</td><td><span class="bye-team">Downtown</span></td></tr>
-                <tr data-region="North"><td>26 April</td><td><span class="region-badge">North</span></td><td class="ground-name">Doncaster</td><td class="match-detail">Knights vs Qalandars</td><td class="ground-name">Leeds</td><td class="match-detail">Tabardars vs Shahzads</td><td><span class="bye-team">Titans</span></td></tr>
-                <tr data-region="Midlands"><td>3 May</td><td><span class="region-badge">Midlands</span></td><td class="ground-name">Rushwick</td><td class="match-detail">Downtown vs Kashir Kah</td><td class="ground-name">Stoke</td><td class="match-detail">Midlands vs Shaheens</td><td><span class="bye-team">Berkshire</span></td></tr>
-                <tr data-region="North"><td>3 May</td><td><span class="region-badge">North</span></td><td class="ground-name">Leeds</td><td class="match-detail">Shahzads vs Qalandars</td><td class="ground-name">Winsford</td><td class="match-detail">Tabardars vs Titans</td><td><span class="bye-team">Knights</span></td></tr>
-                <tr data-region="Midlands"><td>10 May</td><td><span class="region-badge">Midlands</span></td><td class="ground-name">Bath</td><td class="match-detail">Berkshire vs Kashir Kah</td><td class="ground-name">Stafford</td><td class="match-detail">Downtown vs Midlands</td><td><span class="bye-team">Shaheens</span></td></tr>
-                <tr data-region="North"><td>10 May</td><td><span class="region-badge">North</span></td><td class="ground-name">Doncaster</td><td class="match-detail">Titans vs Shahzads</td><td class="ground-name">Leeds</td><td class="match-detail">Tabardars vs Knights</td><td><span class="bye-team">Qalandars</span></td></tr>
-                <tr data-region="Midlands"><td>17 May</td><td><span class="region-badge">Midlands</span></td><td class="ground-name">Ledbury</td><td class="match-detail">Shaheens vs Kashir Kah</td><td class="ground-name">Redditch</td><td class="match-detail">Berkshire vs Downtown</td><td><span class="bye-team">Midlands</span></td></tr>
-                <tr data-region="North"><td>17 May</td><td><span class="region-badge">North</span></td><td class="ground-name">Doncaster</td><td class="match-detail">Tabardars vs Qalandars</td><td class="ground-name">Winsford</td><td class="match-detail">Knights vs Titans</td><td><span class="bye-team">Shahzads</span></td></tr>
+                <!-- Fixtures ordered by date: 12 April, then 19 April (Midlands then North), then 26 April, 3 May, 10 May, 17 May -->
+                
+                <!-- 12th April – Shaheens vs Downtown (preponed) -->
+                <tr data-region="Midlands" class="updated-row">
+                    <td>12 April <span class="preponed-badge"><i class="fas fa-calendar-check"></i> preponed</span></td>
+                    <td><span class="region-badge">Midlands</span></td>
+                    <td><a class="ground-link" href="https://maps.app.goo.gl/MSt4LHjgfqkJWuqP7" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt venue-icon"></i> Leicester</a></td>
+                    <td class="match-detail">Shaheens vs Downtown</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td><span class="bye-team">—</span></td>
+                </tr>
+
+                <!-- 19th April – Midlands vs Berkshire -->
+                <tr data-region="Midlands">
+                    <td>19 April</td>
+                    <td><span class="region-badge">Midlands</span></td>
+                    <td><a class="ground-link" href="https://maps.app.goo.gl/DeHzvr1ZiLPAKRMXA" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt venue-icon"></i> Oxford A</a></td>
+                    <td class="match-detail">Midlands vs Berkshire</td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td><span class="bye-team">Kashir Kah</span></td>
+                </tr>
+
+                <!-- 19th April North -->
+                <tr data-region="North">
+                    <td>19 April</td>
+                    <td><span class="region-badge">North</span></td>
+                    <td><a class="ground-link" href="https://maps.app.goo.gl/dYBQ78oBjdgtvZEn8" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt venue-icon"></i> Denton</a></td>
+                    <td class="match-detail">Titans vs Qalandars</td>
+                    <td><a class="ground-link" href="https://maps.app.goo.gl/5vDBRnA9Wch4RiF7A" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt venue-icon"></i> Winsford</a></td>
+                    <td class="match-detail">Knights vs Shahzads</td>
+                    <td><span class="bye-team">Tabardars</span></td>
+                </tr>
+
+                <!-- 26 April Midlands -->
+                <tr data-region="Midlands">
+                    <td>26 April</td>
+                    <td><span class="region-badge">Midlands</span></td>
+                    <td><a class="ground-link" href="https://maps.app.goo.gl/dhfGG7dbA83cB5N67" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt venue-icon"></i> Redditch</a></td>
+                    <td class="match-detail">Kashir Kah vs Midlands</td>
+                    <td><a class="ground-link" href="https://maps.app.goo.gl/DeHzvr1ZiLPAKRMXA" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt venue-icon"></i> Oxford A</a></td>
+                    <td class="match-detail">Berkshire vs Shaheens</td>
+                    <td><span class="bye-team">Downtown</span></td>
+                </tr>
+
+                <!-- 26 April North -->
+                <tr data-region="North">
+                    <td>26 April</td>
+                    <td><span class="region-badge">North</span></td>
+                    <td><a class="ground-link" href="https://maps.app.goo.gl/g8F7dmX42Nw8UnBW7" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt venue-icon"></i> Doncaster</a></td>
+                    <td class="match-detail">Knights vs Qalandars</td>
+                    <td><a class="ground-link" href="https://maps.app.goo.gl/r35AGtH5cYLyPeKE7" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt venue-icon"></i> Leeds</a></td>
+                    <td class="match-detail">Tabardars vs Shahzads</td>
+                    <td><span class="bye-team">Titans</span></td>
+                </tr>
+
+                <!-- 3 May Midlands -->
+                <tr data-region="Midlands">
+                    <td>3 May</td>
+                    <td><span class="region-badge">Midlands</span></td>
+                    <td><a class="ground-link" href="https://maps.app.goo.gl/cRrZP1yZt3fAqVhD9" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt venue-icon"></i> Gloucester</a></td>
+                    <td class="match-detail">Downtown vs Kashir Kah</td>
+                    <td><a class="ground-link" href="https://maps.app.goo.gl/W75FoRC8AxvnFGs8A" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt venue-icon"></i> Stoke</a></td>
+                    <td class="match-detail">Midlands vs Shaheens</td>
+                    <td><span class="bye-team">Berkshire</span></td>
+                </tr>
+
+                <!-- 3 May North -->
+                <tr data-region="North">
+                    <td>3 May</td>
+                    <td><span class="region-badge">North</span></td>
+                    <td><a class="ground-link" href="https://maps.app.goo.gl/r35AGtH5cYLyPeKE7" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt venue-icon"></i> Leeds</a></td>
+                    <td class="match-detail">Shahzads vs Qalandars</td>
+                    <td><a class="ground-link" href="https://maps.app.goo.gl/5vDBRnA9Wch4RiF7A" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt venue-icon"></i> Winsford</a></td>
+                    <td class="match-detail">Tabardars vs Titans</td>
+                    <td><span class="bye-team">Knights</span></td>
+                </tr>
+
+                <!-- 10 May Midlands -->
+                <tr data-region="Midlands">
+                    <td>10 May</td>
+                    <td><span class="region-badge">Midlands</span></td>
+                    <td><a class="ground-link" href="https://maps.app.goo.gl/UkuZnPG8M5hr8Jaa8" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt venue-icon"></i> Bath</a></td>
+                    <td class="match-detail">Berkshire vs Kashir Kah</td>
+                    <td><a class="ground-link" href="https://maps.app.goo.gl/TDreAGRZkuvr5J858" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt venue-icon"></i> Stafford</a></td>
+                    <td class="match-detail">Downtown vs Midlands</td>
+                    <td><span class="bye-team">Shaheens</span></td>
+                </tr>
+
+                <!-- 10 May North -->
+                <tr data-region="North">
+                    <td>10 May</td>
+                    <td><span class="region-badge">North</span></td>
+                    <td><a class="ground-link" href="https://maps.app.goo.gl/g8F7dmX42Nw8UnBW7" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt venue-icon"></i> Doncaster</a></td>
+                    <td class="match-detail">Titans vs Shahzads</td>
+                    <td><a class="ground-link" href="https://maps.app.goo.gl/r35AGtH5cYLyPeKE7" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt venue-icon"></i> Leeds</a></td>
+                    <td class="match-detail">Tabardars vs Knights</td>
+                    <td><span class="bye-team">Qalandars</span></td>
+                </tr>
+
+                <!-- 17 May Midlands -->
+                <tr data-region="Midlands">
+                    <td>17 May</td>
+                    <td><span class="region-badge">Midlands</span></td>
+                    <td><a class="ground-link" href="https://maps.app.goo.gl/BPWQ9fj5BaQJhUd36" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt venue-icon"></i> Ledbury</a></td>
+                    <td class="match-detail">Shaheens vs Kashir Kah</td>
+                    <td><a class="ground-link" href="https://maps.app.goo.gl/dhfGG7dbA83cB5N67" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt venue-icon"></i> Redditch</a></td>
+                    <td class="match-detail">Berkshire vs Downtown</td>
+                    <td><span class="bye-team">Midlands</span></td>
+                </tr>
+
+                <!-- 17 May North -->
+                <tr data-region="North">
+                    <td>17 May</td>
+                    <td><span class="region-badge">North</span></td>
+                    <td><a class="ground-link" href="https://maps.app.goo.gl/g8F7dmX42Nw8UnBW7" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt venue-icon"></i> Doncaster</a></td>
+                    <td class="match-detail">Tabardars vs Qalandars</td>
+                    <td><a class="ground-link" href="https://maps.app.goo.gl/5vDBRnA9Wch4RiF7A" target="_blank" rel="noopener"><i class="fas fa-map-marker-alt venue-icon"></i> Winsford</a></td>
+                    <td class="match-detail">Knights vs Titans</td>
+                    <td><span class="bye-team">Shahzads</span></td>
+                </tr>
             </tbody>
         </table>
     </div>
 
     <h2><i class="fas fa-trophy"></i> Knockout Stage Fixtures</h2>
     <div class="diagram-container">
-        <!-- Championship -->
         <div class="tournament-bracket">
             <div class="bracket-title"><h3><i class="fas fa-crown"></i> Championship Playoffs (35 Overs)</h3><p>Top 2 from each region</p></div>
             <div class="bracket championship">
@@ -450,7 +676,6 @@
             </div>
             <p style="margin-top:10px;font-style:italic;"><i class="fas fa-info-circle" style="color:#1595FF;"></i> All at separate neutral venues.</p>
         </div>
-        <!-- Plate -->
         <div class="tournament-bracket">
             <div class="bracket-title"><h3><i class="fas fa-shield-alt"></i> Plate Competition (T20)</h3><p>3rd-5th place teams</p></div>
             <div class="bracket plate">
@@ -471,16 +696,15 @@
         </div>
     </div>
 
-    <!-- Format highlights -->
     <div class="key-points">
         <h2><i class="fas fa-star"></i>Format Highlights</h2>
         <div style="display:flex; flex-wrap:wrap; gap:20px;">
-            <div style="flex:1; min-width:260px;"><h3 style="color:#2F1660;"><i class="fas fa-table" style="color:#F1C841;"></i> Group Stage (35 Overs)</h3><ul><li><strong>Round Robin</strong> – 4 matches per team</li><li><strong>Two regions</strong> of 5 teams</li><li>35 overs per side</li><li>Top 2 → Championship; next 3 → Plate</li></ul></div>
+            <div style="flex:1; min-width:260px;"><h3 style="color:#2F1660;"><i class="fas fa-table" style="color:#F1C841;"></i> Group Stage (35 Overs)</h3><ul><li><strong>20 total fixtures</strong> – 10 per region</li><li><strong>Round Robin</strong> – each team plays 4 matches</li><li><strong>Two regions</strong> of 5 teams</li><li>35 overs per side</li><li>Top 2 → Championship; next 3 → Plate</li></ul></div>
             <div style="flex:1; min-width:260px;"><h3 style="color:#2F1660;"><i class="fas fa-shield-alt" style="color:#C61AFF;"></i> Plate Benefits</h3><ul><li><strong>Extra competitive T20 games</strong></li><li><strong>Shared venues</strong> – efficient</li><li>QF: 24 May, SF+Final: 31 May</li><li>Every team stays involved</li></ul></div>
         </div>
+        <p style="margin-top:20px; background:#f0eef9; padding:12px 18px; border-radius:40px; font-size:0.9rem;"><i class="fas fa-info-circle" style="color:#C61AFF;"></i> <strong>Full schedule confirmed:</strong> 20 group stage matches (10 Midlands + 10 North) ordered by date. Shaheens vs Downtown preponed to <strong>12th April at Leicester</strong>. Click any venue marker for Google Maps directions.</p>
     </div>
 
-    <!-- footer exactly as index -->
     <footer class="footer">
         <div class="name">SHCL Cricket League England</div>
         <div class="tagline">Committed to Unity · Excellence · Tradition</div>
@@ -495,57 +719,81 @@
     </footer>
 </div>
 
-<!-- JavaScript for Region Filtering -->
 <script>
     (function() {
         const filterButtons = document.querySelectorAll('.filter-btn');
         const tableRows = document.querySelectorAll('#fixturesTable tbody tr');
-        const fixtureCount = document.getElementById('fixtureCount');
+        const fixtureCountSpan = document.getElementById('fixtureCount');
         
-        // Function to update visible rows based on selected filter
-        function filterTable(region) {
-            let visibleCount = 0;
-            
+        function countMatchesInRow(row) {
+            let matchCount = 0;
+            const match1 = row.cells[3]?.innerText || '';
+            if (match1 && match1 !== '—' && match1.trim() !== '') {
+                matchCount++;
+            }
+            const match2 = row.cells[5]?.innerText || '';
+            if (match2 && match2 !== '—' && match2.trim() !== '') {
+                matchCount++;
+            }
+            return matchCount;
+        }
+        
+        function countVisibleMatches(region) {
+            let totalMatches = 0;
             tableRows.forEach(row => {
                 const rowRegion = row.getAttribute('data-region');
-                
+                if (region === 'full' || rowRegion === region) {
+                    totalMatches += countMatchesInRow(row);
+                }
+            });
+            return totalMatches;
+        }
+        
+        function filterTable(region) {
+            tableRows.forEach(row => {
+                const rowRegion = row.getAttribute('data-region');
                 if (region === 'full' || rowRegion === region) {
                     row.style.display = '';
-                    row.classList.add('filtered-row');
-                    visibleCount++;
                 } else {
                     row.style.display = 'none';
-                    row.classList.remove('filtered-row');
                 }
             });
             
-            // Update count text
+            const matchCount = countVisibleMatches(region);
+            
             if (region === 'full') {
-                fixtureCount.textContent = `Showing all ${visibleCount} fixtures`;
+                fixtureCountSpan.textContent = `Showing ${matchCount} matches (20 total · 10 per region)`;
+            } else if (region === 'Midlands') {
+                fixtureCountSpan.textContent = `Showing ${matchCount} Midlands matches (10 total)`;
+            } else if (region === 'North') {
+                fixtureCountSpan.textContent = `Showing ${matchCount} North matches (10 total)`;
             } else {
-                fixtureCount.textContent = `Showing ${visibleCount} ${region} fixtures`;
+                fixtureCountSpan.textContent = `Showing ${matchCount} matches`;
             }
         }
         
-        // Add click handlers to filter buttons
         filterButtons.forEach(btn => {
             btn.addEventListener('click', function() {
-                // Remove active class from all buttons
                 filterButtons.forEach(b => b.classList.remove('active'));
-                
-                // Add active class to clicked button
                 this.classList.add('active');
-                
-                // Get filter value
-                const filterValue = this.getAttribute('data-filter');
-                
-                // Apply filter
-                filterTable(filterValue);
+                const filterVal = this.getAttribute('data-filter');
+                filterTable(filterVal);
             });
         });
         
-        // Initialize with full view (already active by default)
         filterTable('full');
+        
+        const updatedRow = document.querySelector('tr.updated-row');
+        if (updatedRow) {
+            updatedRow.classList.add('highlight-row');
+            setTimeout(() => updatedRow.classList.remove('highlight-row'), 2500);
+        }
+        
+        const toast = document.createElement('div');
+        toast.className = 'update-toast';
+        toast.innerHTML = '<i class="fas fa-check-circle" style="color:#F1C841;"></i> ✅ 20 group stage matches loaded · Ordered by date. Shaheens vs Downtown preponed to 12 April at Leicester.';
+        document.body.appendChild(toast);
+        setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 500); }, 4800);
     })();
 </script>
 </body>
