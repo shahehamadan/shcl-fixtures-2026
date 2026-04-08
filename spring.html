@@ -789,11 +789,6 @@
             setTimeout(() => updatedRow.classList.remove('highlight-row'), 2500);
         }
         
-        const toast = document.createElement('div');
-        toast.className = 'update-toast';
-        toast.innerHTML = '<i class="fas fa-check-circle" style="color:#F1C841;"></i> ✅ 20 group stage matches loaded · Ordered by date. Shaheens vs Downtown preponed to 12 April at Leicester.';
-        document.body.appendChild(toast);
-        setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 500); }, 4800);
     })();
 </script>
 </body>
